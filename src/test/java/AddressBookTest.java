@@ -14,9 +14,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 public class AddressBookTest {
 
-//    @Autowired
-//    AddressBookRepository repo;
-
     /**
      * Test adding a buddy to the address book
      */
