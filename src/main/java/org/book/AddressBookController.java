@@ -23,20 +23,6 @@ public class AddressBookController {
         this.buddyInfoRepo = buddyInfoRepo;
     }
 
-//    /**
-//     * Example for GUI
-//     * @param model Model
-//     * @return String
-//     */
-//    @GetMapping("/addressBook")
-//    public String addressBookExample(Model model) {
-//        addAddressBook(model);
-//        addBuddy((long) 1, "Homer", "Toronto", "747-098-4567", model);
-//        addBuddy((long) 1, "Tom", "Carleton", "613", model);
-//        getBuddies(model);
-//        return "addressBook";
-//    }
-
     @GetMapping("/getadd")
     public String getAddresses(Model model){
         model.addAttribute("Addresses", addressBookRepo.findAll().toString());

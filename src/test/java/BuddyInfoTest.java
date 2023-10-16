@@ -39,12 +39,4 @@ public class BuddyInfoTest {
         buddy.setPhoneNumber("647-231-1111");
         Assert.assertEquals("647-231-1111", buddy.getPhoneNumber());
     }
-
-//    @Test
-//    public void TestBuddyInfoRepository(){
-//        BuddyInfo b1 = new BuddyInfo("Tom", "Carleton", "613-135-1265");
-//        repo.save(b1);
-//        Assert.assertEquals(b1.getName() , repo.findById(b1.getId()).getName());
-//    }
-
 }

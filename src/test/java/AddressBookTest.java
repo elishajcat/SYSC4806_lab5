@@ -50,19 +50,4 @@ public class AddressBookTest {
         addressBook.removeBuddy(buddy1);
         Assert.assertEquals(1, addressBook.getBuddies().size());
     }
-
-//    @Test
-//    public void testAddressBookJPA(){
-//        AddressBook a1 = new AddressBook();
-//        BuddyInfo b1 = new BuddyInfo("Tom", "Carleton", "613-135-1265");
-//        BuddyInfo b2 = new BuddyInfo("Homer", "Toronto", "747-098-4567");
-//        BuddyInfo b3 = new BuddyInfo("John", "Ottawa", "647-123-1234");
-//        a1.addBuddy(b1);
-//        a1.addBuddy(b2);
-//        a1.addBuddy(b3);
-//        repo.save(a1);
-//        System.out.println(a1);
-//        System.out.println(repo.findById((long) a1.getId()));
-//        Assert.assertEquals(a1.getBuddies().size(), repo.findById((long) a1.getId()).get().getBuddies().size());
-//    }
 }
