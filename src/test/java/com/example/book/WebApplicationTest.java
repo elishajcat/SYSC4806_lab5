@@ -1,3 +1,6 @@
+// Name: Elisha Catherasoo
+// Student Number: 101148507
+
 package com.example.book;
 
 import static org.hamcrest.Matchers.containsString;
@@ -7,7 +10,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +30,7 @@ public class WebApplicationTest{
     private BuddyInfoRepository buddyRepo;
 
     @Test
-    public void shouldReturnAddress() throws Exception {
+    public void shouldReturnDefualtMessage() throws Exception {
         this.mockMvc.perform(get("/")).andExpect(content().string(containsString("")));
     }
 
@@ -50,19 +52,7 @@ public class WebApplicationTest{
     }
 
     @Test
-    @Order(1)
-    public void shouldGetOneAddressBook() throws Exception {
-        AddressBook a1 = new AddressBook();
-        BuddyInfo b1 = new BuddyInfo("Tom", "Carleton", "613");
-        a1.addBuddy(b1);
-        repo.save(a1);
-        this.mockMvc.perform(get("/getoneadd?id=" + a1.getId())).andDo(print()).andExpect(content()
-                .string(containsString("Book with id null: [BuddyInfo[id=5, firstName=&#39;Tom&#39;, lastName=&#39;Carleton&#39;, phoneNumber=&#39;613&#39;]]")));
-    }
-
-
-    @Test
-    public void getBuddys() throws Exception {
+    public void getBuddies() throws Exception {
         AddressBook a1 = new AddressBook();
         BuddyInfo b1 = new BuddyInfo("Tom", "Carleton", "613");
         a1.addBuddy(b1);

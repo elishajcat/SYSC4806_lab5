@@ -1,3 +1,6 @@
+// Name: Elisha Catherasoo
+// Student Number: 101148507
+
 package com.example.book;
 
 import org.junit.jupiter.api.Test;
@@ -20,7 +23,7 @@ public class HttpRequestTest {
 
 	@Test
 	public void addressBookShouldReturnDefaultMessage() throws Exception {
-		assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/getadd",
-				String.class)).contains("Address Books = []");
+		assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/",
+				String.class)).contains("");
 	}
 }

@@ -29,19 +29,10 @@ public class AddressBookController {
         return "addresses";
     }
 
-    @GetMapping("/getoneadd")
-    public String getAddress(@RequestParam Long id,  Model model){
-        Optional<AddressBook> a1 = addressBookRepo.findById(id);
-        if (a1.isEmpty()) return null;
-        model.addAttribute("BuddyList", a1.get().getBuddies());
-        return "getoneadd";
-    }
-
-
     @GetMapping("/getbud")
     public String getBuddies(Model model){
         model.addAttribute("Addresses", buddyInfoRepo.findAll());
-        return "getoneadd";
+        return "buddies";
     }
 
     @PostMapping("/addadd")

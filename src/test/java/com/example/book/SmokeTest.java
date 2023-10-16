@@ -1,3 +1,6 @@
+// Name: Elisha Catherasoo
+// Student Number: 101148507
+
 package com.example.book;
 
 import static org.assertj.core.api.Assertions.assertThat;
