@@ -1,8 +1,8 @@
 // Name: Elisha Catherasoo
 // Student Number: 101148507
 
-import org.book.AddressBook;
-import org.book.BuddyInfo;
+package com.example.book;
+
 import org.junit.Assert;
 import org.junit.Test;
 

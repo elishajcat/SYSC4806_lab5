@@ -1,7 +1,7 @@
 // Name: Elisha Catherasoo
 // Student Number: 101148507
 
-package org.book;
+package com.example.book;
 
 import org.springframework.data.repository.CrudRepository;
 

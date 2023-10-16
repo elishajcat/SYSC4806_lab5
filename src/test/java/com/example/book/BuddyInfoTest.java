@@ -1,7 +1,8 @@
 // Name: Elisha Catherasoo
 // Student Number: 101148507
 
-import org.book.BuddyInfo;
+package com.example.book;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -12,9 +13,6 @@ import org.junit.Test;
  */
 public class BuddyInfoTest {
     BuddyInfo buddy = new BuddyInfo("Tom", "Carleton", "613");
-
-//    @Autowired
-//    BuddyInfoRepository repo;
 
     @Test
     public void setBuddyNameTest() {
