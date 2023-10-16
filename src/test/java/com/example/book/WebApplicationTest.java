@@ -48,38 +48,46 @@ public class WebApplicationTest{
         BuddyInfo b1 = new BuddyInfo("Tom", "Carleton", "613");
         a1.addBuddy(b1);
         repo.save(a1);
-        this.mockMvc.perform(get("/getadd")).andDo(print()).andExpect(status().isOk());
+        this.mockMvc.perform(get("/getadd")).andDo(print()).andExpect(content()
+                .string(containsString("myBuddies = [BuddyInfo[id=3, firstName=&#39;Tom&#39;, address=&#39;Carleton&#39;, phoneNumber=&#39;613&#39;]]")));
     }
 
     @Test
     public void getBuddies() throws Exception {
         AddressBook a1 = new AddressBook();
-        BuddyInfo b1 = new BuddyInfo("Tom", "Carleton", "613");
+        BuddyInfo b1 = new BuddyInfo("Jim", "Ottawa", "235134");
         a1.addBuddy(b1);
         repo.save(a1);
-        this.mockMvc.perform(get("/getbud")).andDo(print()).andExpect(status().isOk());
+        this.mockMvc.perform(get("/getbud")).andDo(print()).andExpect(content()
+                .string(containsString("Buddies List = [BuddyInfo[id=1, firstName=&#39;Mike&#39;, address=&#39;Montreal&#39;, " +
+                        "phoneNumber=&#39;8729473432&#39;], BuddyInfo[id=2, firstName=&#39;Tom&#39;, address=&#39;Carleton&#39;, " +
+                        "phoneNumber=&#39;613&#39;], BuddyInfo[id=3, firstName=&#39;Tom&#39;, address=&#39;Carleton&#39;, " +
+                        "phoneNumber=&#39;613&#39;], BuddyInfo[id=4, firstName=&#39;Jim&#39;, address=&#39;Ottawa&#39;, phoneNumber=&#39;235134&#39;]]")));
     }
 
     @Test
     public void addAddressBook() throws Exception {
         AddressBook a1 = new AddressBook();
-        BuddyInfo b1 = new BuddyInfo("Tom", "Carleton", "613");
+        BuddyInfo b1 = new BuddyInfo("Harry", "Toronto", "6624523413");
         a1.addBuddy(b1);
         String body = asJsonString(a1);
-        this.mockMvc.perform(post("/addadd")).andDo(print()).andExpect(status().isOk());
+        this.mockMvc.perform(post("/addadd")).andDo(print()).andExpect(content()
+                .string(containsString("Address Books = null")));
     }
 
     @Test
     public void addBuddy() throws Exception {
         AddressBook a1 = new AddressBook();
-        BuddyInfo b1 = new BuddyInfo("Tom", "Carleton", "613");
+        BuddyInfo b1 = new BuddyInfo("Mike", "Montreal", "8729473432");
         repo.save(a1);
         String body = asJsonString(b1);
-        this.mockMvc.perform(post("/addbud?id=1&name=Tom&address=Carleton&phoneNumber=613")
+        this.mockMvc.perform(post("/addbud?id=1&name=Mike&address=Montreal&phoneNumber=8729473432")
                         .content(asJsonString(b1))
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON))
-                .andDo(print()).andExpect(status().isOk());
+                .andDo(print()).andExpect(content()
+                        .string(containsString("Address Books = [AddressBook[id = 1] {\n" +
+                                "myBuddies = [BuddyInfo[id=1, firstName=&#39;Mike&#39;, address=&#39;Montreal&#39;, phoneNumber=&#39;8729473432&#39;]]")));
     }
 
     @Test
@@ -92,6 +100,7 @@ public class WebApplicationTest{
         String body = asJsonString(b1);
         this.mockMvc.perform(delete("/delbud?addressId=1&buddyId=1")
                         .accept(MediaType.APPLICATION_JSON))
-                .andDo(print()).andExpect(status().isOk());
+                .andDo(print()).andExpect(content()
+                        .string(containsString("Address Books = null")));
     }
 }

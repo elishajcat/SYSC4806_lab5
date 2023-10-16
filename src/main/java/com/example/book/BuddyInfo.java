@@ -42,7 +42,7 @@ public class BuddyInfo {
     @Override
     public String toString() {
         return String.format(
-                "BuddyInfo[id=%d, firstName='%s', lastName='%s', phoneNumber='%s']",
+                "BuddyInfo[id=%d, firstName='%s', address='%s', phoneNumber='%s']",
                 id, name, address, phoneNumber);
     }
 
