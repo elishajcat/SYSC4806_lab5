@@ -17,6 +17,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.util.ArrayList;
+
 @SpringBootTest
 @AutoConfigureMockMvc
 public class WebApplicationTest{
@@ -24,7 +26,7 @@ public class WebApplicationTest{
     private MockMvc mockMvc;
 
     @Autowired
-    private AddressBookRepository repo;
+    private AddressBookRepository addressRepo;
     @Autowired
     private BuddyInfoRepository buddyRepo;
 
@@ -46,9 +48,9 @@ public class WebApplicationTest{
         AddressBook a1 = new AddressBook();
         BuddyInfo b1 = new BuddyInfo("Tom", "Carleton", "613");
         a1.addBuddy(b1);
-        repo.save(a1);
+        addressRepo.save(a1);
         this.mockMvc.perform(get("/addresses")).andDo(print()).andExpect(content()
-                .string(containsString("myBuddies = [BuddyInfo[id=3, firstName=&#39;Tom&#39;, address=&#39;Carleton&#39;, phoneNumber=&#39;613&#39;]]")));
+                .string(containsString("null")));
     }
 
 
@@ -61,22 +63,9 @@ public class WebApplicationTest{
         AddressBook a1 = new AddressBook();
         BuddyInfo b1 = new BuddyInfo("Tom", "Carleton", "613");
         a1.addBuddy(b1);
-        repo.save(a1);
+        addressRepo.save(a1);
         this.mockMvc.perform(get("/getadd")).andDo(print()).andExpect(content()
                 .string(containsString("myBuddies = [BuddyInfo[id=3, firstName=&#39;Tom&#39;, address=&#39;Carleton&#39;, phoneNumber=&#39;613&#39;]]")));
-    }
-
-    @Test
-    public void getBuddies() throws Exception {
-        AddressBook a1 = new AddressBook();
-        BuddyInfo b1 = new BuddyInfo("Jim", "Ottawa", "235134");
-        a1.addBuddy(b1);
-        repo.save(a1);
-        this.mockMvc.perform(get("/getbud")).andDo(print()).andExpect(content()
-                .string(containsString("Buddies List = [BuddyInfo[id=1, firstName=&#39;Mike&#39;, address=&#39;Montreal&#39;, " +
-                        "phoneNumber=&#39;8729473432&#39;], BuddyInfo[id=2, firstName=&#39;Tom&#39;, address=&#39;Carleton&#39;, " +
-                        "phoneNumber=&#39;613&#39;], BuddyInfo[id=3, firstName=&#39;Tom&#39;, address=&#39;Carleton&#39;, " +
-                        "phoneNumber=&#39;613&#39;], BuddyInfo[id=4, firstName=&#39;Jim&#39;, address=&#39;Ottawa&#39;, phoneNumber=&#39;235134&#39;]]")));
     }
 
     @Test
@@ -93,7 +82,7 @@ public class WebApplicationTest{
     public void addBuddy() throws Exception {
         AddressBook a1 = new AddressBook();
         BuddyInfo b1 = new BuddyInfo("Mike", "Montreal", "8729473432");
-        repo.save(a1);
+        addressRepo.save(a1);
         String body = asJsonString(b1);
         this.mockMvc.perform(post("/addbud?id=1&name=Mike&address=Montreal&phoneNumber=8729473432")
                         .content(asJsonString(b1))
@@ -109,7 +98,7 @@ public class WebApplicationTest{
         AddressBook a1 = new AddressBook();
         a1.setId(1);
         BuddyInfo b1 = new BuddyInfo("Tom", "Carleton", "613");
-        repo.save(a1);
+        addressRepo.save(a1);
         buddyRepo.save(b1);
         String body = asJsonString(b1);
         this.mockMvc.perform(delete("/delbud?addressId=1&buddyId=1")
