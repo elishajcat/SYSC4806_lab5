@@ -28,8 +28,11 @@ public class AddressBookController {
     public String getAddresses(Model model){
         ArrayList<AddressBook> addressBooks = new ArrayList<>();
         addressBookRepo.findAll().forEach(addressBooks::add);
-        model.addAttribute("Address Books", addressBooks);
-        model.addAttribute("Buddy Infos", new BuddyInfo());
+//        model.addAttribute("Address Books", addressBooks);
+//        model.addAttribute("Buddy Infos", new BuddyInfo());
+
+        model.addAttribute("Address Books", addressBookRepo.findAll().toString());
+
         return "addresses";
     }
 
@@ -38,16 +41,22 @@ public class AddressBookController {
         AddressBook a = new AddressBook();
         addressBookRepo.save(a);
         ArrayList<AddressBook> addressBooks = new ArrayList<>();
-        model.addAttribute("Address Books", addressBooks);
-        model.addAttribute("Buddy Infos", new BuddyInfo());
+        addressBookRepo.findAll().forEach(addressBooks::add);
+//        model.addAttribute("Address Books", addressBooks);
+//        model.addAttribute("Buddy Infos", new BuddyInfo());
+
+        model.addAttribute("Address Books", addressBookRepo.findAll().toString());
         return "addresses";
     }
 
     @PostMapping("/addresses/{id}/buddies")
     public String addBuddy(@PathVariable Long id, @ModelAttribute BuddyInfo buddy, Model model){
-        AddressBook addressBook = addressBookRepo.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Address Book Id Not Found"));
-        addressBook.addBuddy(buddy);
-        addressBookRepo.save(addressBook);
+        AddressBook a1 = addressBookRepo.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Address Book Id Not Found"));
+        a1.addBuddy(buddy);
+        addressBookRepo.save(a1);
+
+//        model.addAttribute("Addresses", addressBookRepo.findAll());
+
         return "redirect:/addresses";
     }
 
@@ -55,27 +64,13 @@ public class AddressBookController {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     @GetMapping("/getadd")
-    public String getAddresses1(Model model){
+    public String getAddressess(Model model){
         model.addAttribute("Addresses", addressBookRepo.findAll().toString());
         return "addresses";
     }
 
-    @GetMapping("/getbud")
-    public String getBuddies(Model model){
-        model.addAttribute("Addresses", buddyInfoRepo.findAll());
-        return "buddies";
-    }
-
-    @GetMapping("/addadd")
-    public String addAddressBookForm(Model model){
-        AddressBook a = new AddressBook();
-        addressBookRepo.save(a);
-        model.addAttribute("AddressId", a.getId());
-        return "addresses";
-    }
-
     @PostMapping("/addadd")
-    public String addAddressBook1(Model model){
+    public String addAddressBooks(Model model){
         AddressBook a = new AddressBook();
         addressBookRepo.save(a);
         model.addAttribute("AddressId", a.getId());
@@ -83,18 +78,7 @@ public class AddressBookController {
     }
 
     @PostMapping("/addbud")
-    public String addBuddyForm(@PathVariable Long id, @ModelAttribute BuddyInfo buddy, Model model){
-        Optional<AddressBook> a = addressBookRepo.findById(id);
-        if(a.isEmpty()) return null;
-        AddressBook a1 = a.get();
-        a1.addBuddy(buddy);
-        addressBookRepo.save(a1);
-        model.addAttribute("Addresses", addressBookRepo.findAll());
-        return "addresses";
-    }
-
-    @PostMapping("/addbud")
-    public String addBuddy(@ModelAttribute Long id, @ModelAttribute String name, @ModelAttribute String address, @ModelAttribute String phoneNumber, Model model){
+    public String addBuddy(@RequestParam Long id, @RequestParam String name, @RequestParam String address, @RequestParam String phoneNumber, Model model){
         Optional<AddressBook> a = addressBookRepo.findById(id);
         if(a.isEmpty()) return null;
         AddressBook a1 = a.get();

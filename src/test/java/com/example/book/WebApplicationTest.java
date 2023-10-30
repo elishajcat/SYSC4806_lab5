@@ -42,6 +42,21 @@ public class WebApplicationTest{
     }
 
     @Test
+    public void getAddressBooks() throws Exception {
+        AddressBook a1 = new AddressBook();
+        BuddyInfo b1 = new BuddyInfo("Tom", "Carleton", "613");
+        a1.addBuddy(b1);
+        repo.save(a1);
+        this.mockMvc.perform(get("/addresses")).andDo(print()).andExpect(content()
+                .string(containsString("myBuddies = [BuddyInfo[id=3, firstName=&#39;Tom&#39;, address=&#39;Carleton&#39;, phoneNumber=&#39;613&#39;]]")));
+    }
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    @Test
     public void getAllAddressBooks() throws Exception {
         AddressBook a1 = new AddressBook();
         BuddyInfo b1 = new BuddyInfo("Tom", "Carleton", "613");
