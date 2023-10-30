@@ -1,10 +1,17 @@
 <!DOCTYPE HTML>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <title>Getting Started: Serving Web Content</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    </head>
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
     <body>
+        <p th:text="'Address Books = ' + ${AddressBooks} " />
+
+        <h1>Add Address Book Form</h1>
+        <form action="#" id="ab_submit" th:action="@{/addresses}" th:object="${AddressBooks}" method="post">
+            <p><input type="submit" value="Create New Address Book" /> </p>
+        </form>
+
         <div th:each = "AddressBook : ${AddressBooks}">
             <p th:text="'Buddies List = ' + ${BuddyInfos}"></p>
 

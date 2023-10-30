@@ -5,20 +5,25 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     </head>
     <body>
-        <a href="/getadd">view Addressbooks <br/> </a>
-        <a href="/getbud">view BuddyInfos <br/> </a>
+    <a href="/addresses">view Addressbooks <br/> </a>
 
-        <h1>Add Address Book Form</h1>
-        <form action="#" id="ab_submit" th:action="@{/addresses}" th:object="${AddressBooks}" method="post">
-            <p><input type="submit" value="Create New Address Book" /> </p>
-        </form>
+<!--    <p th:text="'Address Books = ' + ${AddressBooks} " />-->
 
-        <h1>Add Buddy Form</h1>
-        <form action="#" th:id="'buddy_submit' + ${addressBook.id}" th:class="${addressBook.id}" th:action="@{/addressBooks/{id}/buddy(id=${addressBook.id})}" th:object="${BuddyInfos}" method="post">
-            <p>Name: <input type="text" class="name" th:field="*{name}" th:id="'name' + ${addressBook.id}" /></p>
-            <p>Address: <input type="text" class="address" th:field="*{address}" th:id="'address' + ${addressBook.id}" /></p>
-            <p>Phone Number: <input type="text" class="phoneNumber" th:field="*{phoneNumber}" th:id="'phoneNumber' + ${addressBook.id}"/></p>
-            <p><input type="submit" value="Create New Buddy Info" /> <input type="reset" value="Reset" /></p>
-        </form>
+<!--        <h1>Add Address Book Form</h1>-->
+<!--        <form action="#" id="ab_submit" th:action="@{/addresses}" th:object="${AddressBooks}" method="post">-->
+<!--            <p><input type="submit" value="Create New Address Book" /> </p>-->
+<!--        </form>-->
+
+<!--        <div th:each = "AddressBook : ${AddressBooks}">-->
+<!--            <p th:text="'Buddies List = ' + ${BuddyInfos}"></p>-->
+
+<!--            <h1>Add Buddy Form</h1>-->
+<!--            <form action="#" th:action="@{/addresses/{id}/buddy(id=${AddressBook.id})}" th:object="${BuddyInfos}" method="post">-->
+<!--                <p>Name: <input type="text" class="name" th:field="*{name}" th:id="'name' + ${AddressBook.id}" /></p>-->
+<!--                <p>Address: <input type="text" class="address" th:field="*{address}" th:id="'address' + ${AddressBook.id}" /></p>-->
+<!--                <p>Phone Number: <input type="text" class="phoneNumber" th:field="*{phoneNumber}" th:id="'phoneNumber' + ${AddressBook.id}"/></p>-->
+<!--                <p><input type="submit" value="Create New Buddy Info" /> <input type="reset" value="Reset" /></p>-->
+<!--            </form>-->
+<!--        </div>-->
     </body>
 </html>
