@@ -1,23 +1,28 @@
 <!DOCTYPE HTML>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Getting Started: Serving Web Content</title>
+    <title>Address Books</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
+<!--    <script src="addresses.js"></script>-->
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="addresses.js"></script>
-</head>
-    <body>
-        <p th:text="'Address Books = ' + ${AddressBooks} " />
+    <script>
 
-        <p>Add Address Book Form</p>
-        <form action="#" id="addressBook_submit" th:action="@{/addresses}" th:object="${AddressBooks}" method="post">
-            <p><input type="submit" value="Create New Address Book" /> </p>
-        </form>
+    </script>
 
-        <div th:each = "AddressBook : ${AddressBooks}">
-            <p th:text="'Buddies List = ' + ${BuddyInfos}"></p>
+    </head>
+        <body>
+            <p id="add_book" th:text="'Address Books = ' + ${AddressBooks} " />
+            <p>Add Address Book</p>
+            <form action="#" id="book_submit" th:action="@{/addresses}" th:object="${AddressBooks}" method="post">
+                <p><input type="submit" value="Create New Address Book" /> </p>
+            </form>
 
-            <p th:text="'Add Buddy to AddressBook #' + ${AddressBook.id} + ' Form'"></p>
+        <div id="address_book_buddies" th:each = "AddressBook : ${AddressBooks}">
+
+<!--            <p class="address-id">Add Buddy to AddressBook #</p>-->
+            <p class="addressBookId" th:text="'Add Buddy to AddressBook #' + ${AddressBook.id}"></p>
             <form action="#" th:id="'buddy_submit' + ${AddressBook.id}" th:action="@{/addresses/{id}/buddy(id=${AddressBook.id})}" th:object="${BuddyInfos}" method="post">
                 <p>Name: <input type="text" class="name" th:field="*{name}" th:id="'name' + ${AddressBook.id}" /></p>
                 <p>Address: <input type="text" class="address" th:field="*{address}" th:id="'address' + ${AddressBook.id}" /></p>
@@ -27,3 +32,37 @@
         </div>
     </body>
 </html>
+
+<!--$(document).on("submit", "#createBook", function(event) {-->
+<!--event.preventDefault();-->
+
+<!--$.ajax({-->
+<!--headers: {-->
+<!--Accept: "application/json; charset=utf-8",-->
+<!--"Content-Type": "application/json; charset=utf-8"-->
+<!--},-->
+<!--type: "POST",-->
+<!--url: "/addresses",-->
+<!--data: {},-->
+<!--contentType: "application/json; charset=utf-8",-->
+<!--dataType: "json",-->
+<!--success: function(response) {-->
+<!--console.log(response);-->
+<!--$("#addressBookId").append("AddressBook #: " + data.id);-->
+<!--}-->
+<!--});-->
+<!--});-->
+
+<!--$(document).ready(function() {-->
+<!--$.ajax({-->
+<!--headers: {-->
+<!--Accept: "application/json; charset=utf-8",-->
+<!--"Content-Type": "application/json; charset=utf-8"-->
+<!--},-->
+<!--type: "POST",-->
+<!--url: "/addresses"-->
+<!--}).then(function(data, status, jqxhr) {-->
+<!--$(".address-id").append(data.id);-->
+<!--console.log(jqxhr);-->
+<!--});-->
+<!--});-->
