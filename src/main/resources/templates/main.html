@@ -17,7 +17,7 @@
         <div th:each = "AddressBook : ${AddressBooks}">
             <p th:text="'Buddies List = ' + ${BuddyInfos}"></p>
 
-            <p>Add Buddy Form</p>
+            <p th:text="'Add Buddy to AddressBook #' + ${AddressBook.id} + ' Form'"></p>
             <form action="#" th:id="'buddy_submit' + ${AddressBook.id}" th:action="@{/addresses/{id}/buddy(id=${AddressBook.id})}" th:object="${BuddyInfos}" method="post">
                 <p>Name: <input type="text" class="name" th:field="*{name}" th:id="'name' + ${AddressBook.id}" /></p>
                 <p>Address: <input type="text" class="address" th:field="*{address}" th:id="'address' + ${AddressBook.id}" /></p>
