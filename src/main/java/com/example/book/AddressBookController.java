@@ -47,12 +47,12 @@ public class AddressBookController {
     }
 
     @PostMapping("/addBuddy")
-    public String addBuddy(@PathVariable Long id, @ModelAttribute String name, @ModelAttribute String address, @ModelAttribute String phoneNumber, Model model){
+    public String addBuddy(@PathVariable Long id, @ModelAttribute BuddyInfo buddy, Model model){
         AddressBook a1 = addressBookRepo.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Address Book Id Not Found"));
-        a1.addBuddy(new BuddyInfo(name, address, phoneNumber));
+        a1.addBuddy(buddy);
         addressBookRepo.save(a1);
 
-        return "main";
+        return "redirect:/addresses";
     }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
