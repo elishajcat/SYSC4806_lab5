@@ -22,11 +22,11 @@
                 <p>Phone Number: <input type="text" class="phoneNumber" th:field="*{phoneNumber}" th:id="'phoneNumber' + ${AddressBook.id}"/></p>
                 <p><input type="submit" value="Create New Buddy Info" /> <input type="reset" value="Reset" /></p>
             </form>
-<!--            <div th:id="'Buddy' + ${AddressBook.id}" th:each = "Buddy : ${AddressBook.getAddresses()}">-->
-<!--                <p th:text="'Buddy Id' + ${Buddy.id}"></p>-->
-<!--                <p th:text="'Name: ' + ${Buddy.name}"></p>-->
-<!--                <p th:text="'Phone Number: ' + ${Buddy.phoneNumber}"></p>-->
-<!--            </div>-->
+            <div th:id="'Buddy' + ${AddressBook.id}" th:each = "Buddy : ${AddressBook.getBuddies()}">
+                <p th:text="'Buddy Id' + ${Buddy.id}"></p>
+                <p th:text="'Name: ' + ${Buddy.name}"></p>
+                <p th:text="'Phone Number: ' + ${Buddy.phoneNumber}"></p>
+            </div>
         </div>
     </body>
 </html>
