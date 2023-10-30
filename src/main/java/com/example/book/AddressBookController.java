@@ -52,7 +52,7 @@ public class AddressBookController {
         a1.addBuddy(buddy);
         addressBookRepo.save(a1);
 
-        return "redirect:/main";
+        return "main";
     }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -14,8 +14,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 
@@ -49,7 +51,9 @@ public class WebApplicationTest{
         ArrayList<AddressBook> addressBooks = new ArrayList<>();
         addressRepo.findAll().forEach(addressBooks::add);
         this.mockMvc.perform(get("/addresses")).andDo(print()).andExpect(content()
-                .string(containsString("[AddressBook[id = 1] {\n" +
+                .string(containsString("Address Books = [AddressBook[id = 1] {\n" +
+                        "myBuddies = []\n" +
+                        "}, AddressBook[id = 2] {\n" +
                         "myBuddies = []\n" +
                         "}]")));
     }
@@ -57,26 +61,23 @@ public class WebApplicationTest{
     @Test
     public void addBook() throws Exception {
         AddressBook a1 = new AddressBook();
-        BuddyInfo b1 = new BuddyInfo("Harry", "Toronto", "6624523413");
-        a1.addBuddy(b1);
-        String body = asJsonString(a1);
+        addressRepo.save(a1);
         this.mockMvc.perform(post("/addresses")).andDo(print()).andExpect(content()
                 .string(containsString("Address Books = [AddressBook[id = 1]")));
     }
 
     @Test
     public void addBuddies() throws Exception {
+        addressRepo.deleteAll();
         AddressBook a1 = new AddressBook();
-        a1.setId(1);
         BuddyInfo b1 = new BuddyInfo("Tom", "Carleton", "613");
-        addressRepo.save(a1);
-        buddyRepo.save(b1);
-        this.mockMvc.perform(post("/addbud?id=1&buddy=b1")
+        this.mockMvc.perform(post("/addresses/1/buddies?buddy=" + b1)
                         .content(asJsonString(b1))
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON))
                 .andDo(print()).andExpect(content()
-                        .string(containsString("")));
+                        .string(containsString("[BuddyInfo[id=1, firstName=&#39;Tom&#39;, address=&#39;Carleton&#39;, " +
+                                "phoneNumber=&#39;613&#39;]]")));
     }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
