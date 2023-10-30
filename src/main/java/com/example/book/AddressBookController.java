@@ -41,7 +41,7 @@ public class AddressBookController {
         ArrayList<AddressBook> addressBooks = new ArrayList<>();
         addressBookRepo.findAll().forEach(addressBooks::add);
         model.addAttribute("AddressBooks", addressBooks);
-//        model.addAttribute("BuddyInfos", new BuddyInfo());
+        model.addAttribute("BuddyInfos", new BuddyInfo());
 
         return "main";
     }

@@ -7,27 +7,26 @@
     <body>
         <p th:text="'Address Books = ' + ${AddressBooks} " />
 
-        <h1>Add Address Book Form</h1>
-        <form action="#" id="ab_submit" th:action="@{/addresses}" th:object="${AddressBooks}" method="post">
+        <p>Add Address Book Form</p>
+        <form action="#" th:action="@{/addresses}" th:object="${AddressBooks}" method="post">
             <p><input type="submit" value="Create New Address Book" /> </p>
         </form>
 
         <div th:each = "AddressBook : ${AddressBooks}">
             <p th:text="'Buddies List = ' + ${BuddyInfos}"></p>
 
-            <h1>Add Buddy Form</h1>
-            <form action="#" th:action="@{/addresses/{id}/buddy(id=${AddressBook.id})}" th:object="${BuddyInfos}" method="post">
+            <p>Add Buddy Form</p>
+            <form action="#" th:id=" + ${AddressBook.id}" th:action="@{/addresses/{id}/buddy(id=${AddressBook.id})}" th:object="${BuddyInfos}" method="post">
                 <p>Name: <input type="text" class="name" th:field="*{name}" th:id="'name' + ${AddressBook.id}" /></p>
                 <p>Address: <input type="text" class="address" th:field="*{address}" th:id="'address' + ${AddressBook.id}" /></p>
                 <p>Phone Number: <input type="text" class="phoneNumber" th:field="*{phoneNumber}" th:id="'phoneNumber' + ${AddressBook.id}"/></p>
                 <p><input type="submit" value="Create New Buddy Info" /> <input type="reset" value="Reset" /></p>
             </form>
-            <div th:id="'Buddy' + ${AddressBook.id}" th:each = "Buddy : ${AddressBook.getAddresses()}">
-                <br style="color: black; "/>
-                <p th:text="'Buddy Id' + ${Buddy.id}"></p>
-                <p th:text="'Name: ' + ${Buddy.name}"></p>
-                <p th:text="'Phone Number: ' + ${Buddy.phoneNumber}"></p>
-            </div>
+<!--            <div th:id="'Buddy' + ${AddressBook.id}" th:each = "Buddy : ${AddressBook.getAddresses()}">-->
+<!--                <p th:text="'Buddy Id' + ${Buddy.id}"></p>-->
+<!--                <p th:text="'Name: ' + ${Buddy.name}"></p>-->
+<!--                <p th:text="'Phone Number: ' + ${Buddy.phoneNumber}"></p>-->
+<!--            </div>-->
         </div>
     </body>
 </html>
