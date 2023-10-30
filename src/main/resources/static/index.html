@@ -9,12 +9,12 @@
         <a href="/getbud">view BuddyInfos <br/> </a>
 
         <h1>Add Address Book Form</h1>
-        <form action="#" th:action="@{/addresses}" th:object="${addresses}" method="post">
+        <form action="#" id="ab_submit" th:action="@{/addresses}" th:object="${addresses}" method="post">
             <p><input type="submit" value="Create New Address Book" /> </p>
         </form>
 
         <h1>Add Buddy Form</h1>
-        <form action="#" th:action="@{/addressBooks/{id}/buddy(id=${addressBook.id})}" th:object="${buddy}" method="post">
+        <form action="#" th:id="'buddy_submit' + ${addressBook.id}" th:class="${addressBook.id}" th:action="@{/addressBooks/{id}/buddy(id=${addressBook.id})}" th:object="${buddy}" method="post">
             <p>Name: <input type="text" class="name" th:field="*{name}" th:id="'name' + ${addressBook.id}" /></p>
             <p>Address: <input type="text" class="address" th:field="*{address}" th:id="'address' + ${addressBook.id}" /></p>
             <p>Phone Number: <input type="text" class="phoneNumber" th:field="*{phoneNumber}" th:id="'phoneNumber' + ${addressBook.id}"/></p>
