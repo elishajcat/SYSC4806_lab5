@@ -5,10 +5,10 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     </head>
     <body>
-        <p th:text="'Buddies List = ' + ${Addresses}"></p>
+        <p th:text="'Buddies List = ' + ${BuddyInfos}"></p>
 
         <h1>Add Buddy Form</h1>
-        <form action="#" th:action="@{/addressBooks/{id}/buddy(id=${addressBook.id})}" th:object="${buddy}" method="post">
+        <form action="#" th:action="@{/addresses/{id}/buddy(id=${addressBook.id})}" th:object="${buddy}" method="post">
             <p>Name: <input type="text" class="name" th:field="*{name}" th:id="'name' + ${addressBook.id}" /></p>
             <p>Address: <input type="text" class="address" th:field="*{address}" th:id="'address' + ${addressBook.id}" /></p>
             <p>Phone Number: <input type="text" class="phoneNumber" th:field="*{phoneNumber}" th:id="'phoneNumber' + ${addressBook.id}"/></p>
