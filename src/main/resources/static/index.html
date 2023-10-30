@@ -5,13 +5,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     </head>
     <body>
-        <a href="/getadd">view Addressbooks <br/> </a>
-        <a href="/getbud">view BuddyInfos <br/> </a>
-        <h1>Add Address Book Form</h1>
-        <form action="#" th:action="@{/addadd}" th:object="${addadd}" method="post">
-            <p>Id: <input type="text" th:field="*{id}" /></p>
-            <p>Message: <input type="text" th:field="*{content}" /></p>
-            <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
-        </form>
+        <a href="/addadd">view Addressbooks <br/> </a>
+        <a href="/addbud">view BuddyInfos <br/> </a>
     </body>
 </html>
