@@ -7,7 +7,7 @@
     <body>
         <a href="/getadd">view Addressbooks <br/> </a>
         <a href="/getbud">view BuddyInfos <br/> </a>
-        <h1>Form</h1>
+        <h1>Add Address Book Form</h1>
         <form action="#" th:action="@{/addadd}" th:object="${addadd}" method="post">
             <p>Id: <input type="text" th:field="*{id}" /></p>
             <p>Message: <input type="text" th:field="*{content}" /></p>
