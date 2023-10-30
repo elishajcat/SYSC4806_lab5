@@ -20,7 +20,6 @@
             </form>
 
         <div id="address_book_buddies" th:each = "AddressBook : ${AddressBooks}">
-
 <!--            <p class="address-id">Add Buddy to AddressBook #</p>-->
             <p class="addressBookId" th:text="'Add Buddy to AddressBook #' + ${AddressBook.id}"></p>
             <form action="#" th:id="'buddy_submit' + ${AddressBook.id}" th:action="@{/addresses/{id}/buddy(id=${AddressBook.id})}" th:object="${BuddyInfos}" method="post">
