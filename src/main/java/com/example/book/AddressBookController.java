@@ -31,8 +31,6 @@ public class AddressBookController {
         model.addAttribute("AddressBooks", addressBooks);
         model.addAttribute("BuddyInfos", new BuddyInfo());
 
-        model.addAttribute("AddressBooks", addressBookRepo.findAll().toString());
-
         return "addresses";
     }
 
@@ -42,10 +40,9 @@ public class AddressBookController {
         addressBookRepo.save(a);
         ArrayList<AddressBook> addressBooks = new ArrayList<>();
         addressBookRepo.findAll().forEach(addressBooks::add);
-//        model.addAttribute("Address Books", addressBooks);
-//        model.addAttribute("Buddy Infos", new BuddyInfo());
+        model.addAttribute("Address Books", addressBooks);
+        model.addAttribute("Buddy Infos", new BuddyInfo());
 
-        model.addAttribute("AddressBooks", addressBookRepo.findAll().toString());
         return "addresses";
     }
 
