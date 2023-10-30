@@ -3,12 +3,14 @@
 <head>
     <title>Getting Started: Serving Web Content</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="addresses.js"></script>
 </head>
     <body>
         <p th:text="'Address Books = ' + ${AddressBooks} " />
 
         <p>Add Address Book Form</p>
-        <form action="#" id="ab_submit" th:action="@{/addresses}" th:object="${AddressBooks}" method="post">
+        <form action="#" id="addressBook_submit" th:action="@{/addresses}" th:object="${AddressBooks}" method="post">
             <p><input type="submit" value="Create New Address Book" /> </p>
         </form>
 
@@ -22,12 +24,6 @@
                 <p>Phone Number: <input type="text" class="phoneNumber" th:field="*{phoneNumber}" th:id="'phoneNumber' + ${AddressBook.id}"/></p>
                 <p><input type="submit" value="Create New Buddy Info" /> <input type="reset" value="Reset" /></p>
             </form>
-            <div th:id="'Buddy' + ${AddressBook.id}" th:each = "Buddy : ${AddressBook.getBuddies()}">
-                <p th:text="'Buddy Id: ' + ${Buddy.id}"></p>
-                <p th:text="'Name: ' + ${Buddy.name}"></p>
-                <p th:text="'Address: ' + ${Buddy.address}"></p>
-                <p th:text="'Phone Number: ' + ${Buddy.phoneNumber}"></p>
-            </div>
         </div>
     </body>
 </html>
