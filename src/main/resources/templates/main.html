@@ -15,6 +15,7 @@
         </form>
 
         <div th:each = "AddressBook : ${AddressBooks}">
+
             <p th:text="'Buddies List = ' + ${BuddyInfos}"></p>
 
             <p th:text="'Add Buddy to AddressBook #' + ${AddressBook.id} + ' Form'"></p>
