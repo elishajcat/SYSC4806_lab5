@@ -1,7 +1,7 @@
 $(document).ready(function() {
     $.ajax({
         type: "POST",
-        url: "https://elisha-addressbook-new.azurewebsites.net/addresses"
+        url: "/addresses"
         data: {}
     }).then(function(data, status, jqxhr) {
        $(".addressBookId").append(data.id);
