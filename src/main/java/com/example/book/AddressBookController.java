@@ -51,6 +51,8 @@ public class AddressBookController {
         Optional<AddressBook> a = addressBookRepo.findById(id);
         if(a.isEmpty()) return null;
         AddressBook a1 = a.get();
+        a1.addBuddy(buddy);
+        addressBookRepo.save(a1);
 
         model.addAttribute("BuddyInfos", buddy);
 
