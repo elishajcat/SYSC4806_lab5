@@ -8,10 +8,10 @@
         <p th:text="'Buddies List = ' + ${Addresses}"></p>
 
         <h1>Add Buddy Form</h1>
-        <form action="#" th:action="@{/addbud}" th:object="${addbud}" method="post">
-            <p>Name: <input type="text" th:field="*{name}" /></p>
-            <p>Address: <input type="text" th:field="*{address}" /></p>
-            <p>Phone Number: <input type="text" th:field="*{[phoneNumber]}" /></p>
+        <form action="#" th:action="@{/addressBooks/{id}/buddy(id=${addressBook.id})}" th:object="${buddy}" method="post">
+            <p>Name: <input type="text" class="name" th:field="*{name}" th:id="'name' + ${addressBook.id}" /></p>
+            <p>Address: <input type="text" class="address" th:field="*{address}" th:id="'address' + ${addressBook.id}" /></p>
+            <p>Phone Number: <input type="text" class="phoneNumber" th:field="*{phoneNumber}" th:id="'phoneNumber' + ${addressBook.id}"/></p>
             <p><input type="submit" value="Create New Buddy Info" /> <input type="reset" value="Reset" /></p>
         </form>
     </body>
