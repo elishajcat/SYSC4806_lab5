@@ -71,7 +71,9 @@ public class WebApplicationTest{
         addressRepo.deleteAll();
         AddressBook a1 = new AddressBook();
         BuddyInfo b1 = new BuddyInfo("Tom", "Carleton", "613");
-        this.mockMvc.perform(post("/addresses/1/buddies?buddy=" + b1)
+        a1.addBuddy(b1);
+        addressRepo.save(a1);
+        this.mockMvc.perform(post("/addresses?id=1&name=Tom&address=Carleton&phoneNumber=613")
                         .content(asJsonString(b1))
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON))
@@ -89,7 +91,7 @@ public class WebApplicationTest{
 //        a1.addBuddy(b1);
 //        addressRepo.save(a1);
 //        this.mockMvc.perform(get("/getadd")).andDo(print()).andExpect(content()
-//                .string(containsString("myBuddies = [BuddyInfo[id=3, firstName=&#39;Tom&#39;, address=&#39;Carleton&#39;, phoneNumber=&#39;613&#39;]]")));
+//                .string(containsString("myBuddies = [BuddyInfo[id=3, name=&#39;Tom&#39;, address=&#39;Carleton&#39;, phoneNumber=&#39;613&#39;]]")));
 //    }
 //
 //    @Test
@@ -99,10 +101,10 @@ public class WebApplicationTest{
 //        a1.addBuddy(b1);
 //        addressRepo.save(a1);
 //        this.mockMvc.perform(get("/getbud")).andDo(print()).andExpect(content()
-//                .string(containsString("Buddies List = [BuddyInfo[id=1, firstName=&#39;Mike&#39;, address=&#39;Montreal&#39;, " +
-//                        "phoneNumber=&#39;8729473432&#39;], BuddyInfo[id=2, firstName=&#39;Tom&#39;, address=&#39;Carleton&#39;, " +
-//                        "phoneNumber=&#39;613&#39;], BuddyInfo[id=3, firstName=&#39;Tom&#39;, address=&#39;Carleton&#39;, " +
-//                        "phoneNumber=&#39;613&#39;], BuddyInfo[id=4, firstName=&#39;Jim&#39;, address=&#39;Ottawa&#39;, phoneNumber=&#39;235134&#39;]]")));
+//                .string(containsString("Buddies List = [BuddyInfo[id=1, name=&#39;Mike&#39;, address=&#39;Montreal&#39;, " +
+//                        "phoneNumber=&#39;8729473432&#39;], BuddyInfo[id=2, name=&#39;Tom&#39;, address=&#39;Carleton&#39;, " +
+//                        "phoneNumber=&#39;613&#39;], BuddyInfo[id=3, name=&#39;Tom&#39;, address=&#39;Carleton&#39;, " +
+//                        "phoneNumber=&#39;613&#39;], BuddyInfo[id=4, name=&#39;Jim&#39;, address=&#39;Ottawa&#39;, phoneNumber=&#39;235134&#39;]]")));
 //    }
 //
 //    @Test
@@ -125,7 +127,7 @@ public class WebApplicationTest{
 //                        .accept(MediaType.APPLICATION_JSON))
 //                .andDo(print()).andExpect(content()
 //                        .string(containsString("Address Books = [AddressBook[id = 1] {\n" +
-//                                "myBuddies = [BuddyInfo[id=1, firstName=&#39;Mike&#39;, address=&#39;Montreal&#39;, phoneNumber=&#39;8729473432&#39;]]")));
+//                                "myBuddies = [BuddyInfo[id=1, name=&#39;Mike&#39;, address=&#39;Montreal&#39;, phoneNumber=&#39;8729473432&#39;]]")));
 //    }
 //
 //    @Test
