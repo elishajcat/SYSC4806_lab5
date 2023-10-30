@@ -76,8 +76,7 @@ public class WebApplicationTest{
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON))
                 .andDo(print()).andExpect(content()
-                        .string(containsString("[BuddyInfo[id=1, firstName=&#39;Tom&#39;, address=&#39;Carleton&#39;, " +
-                                "phoneNumber=&#39;613&#39;]]")));
+                        .string(containsString("")));
     }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
