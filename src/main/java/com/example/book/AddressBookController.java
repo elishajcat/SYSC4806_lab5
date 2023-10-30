@@ -35,6 +35,14 @@ public class AddressBookController {
         return "buddies";
     }
 
+    @GetMapping("/addadd")
+    public String addAddressBookForm(Model model){
+        AddressBook a = new AddressBook();
+        addressBookRepo.save(a);
+        model.addAttribute("AddressId", a.getId());
+        return "addresses";
+    }
+
     @PostMapping("/addadd")
     public String addAddressBook(Model model){
         AddressBook a = new AddressBook();
